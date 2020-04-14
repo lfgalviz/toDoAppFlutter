@@ -30,7 +30,6 @@ class _NewTodoDialogState extends State<NewTodoDialog> {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: <Widget>[
           TextField(
-            obscureText: true,
             decoration: InputDecoration(
               border: OutlineInputBorder(),
               labelText: 'Title',
@@ -41,7 +40,6 @@ class _NewTodoDialogState extends State<NewTodoDialog> {
             height: 10.0,
           ),
           TextField(
-            obscureText: true,
             decoration: InputDecoration(
               border: OutlineInputBorder(),
               labelText: 'Body',
