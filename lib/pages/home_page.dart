@@ -27,8 +27,9 @@ class _HomePageTodoState extends State<HomePageTodo> {
         itemCount: todos.length,
         itemBuilder: (context, posicion) {
           var element = todos[posicion];
+          String key=todos[posicion].title;
           return Dismissible(
-            key: UniqueKey(),
+            key: Key(key),
             child: Card(
               child: ListTile(
                 title: Text(element.title),
@@ -43,7 +44,12 @@ class _HomePageTodoState extends State<HomePageTodo> {
               setState(() {
                 todos.removeAt(posicion);
               });
+
+              
+              Scaffold.of(context)
+                  .showSnackBar(SnackBar(content: Text("$key task dismissed")));
             },
+            background: Container(color: Colors.red), 
           );
         });
   }
