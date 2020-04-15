@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'todo.dart';
+import 'myDropButton.dart';
+
 class NewTodoDialog extends StatefulWidget {
   @override
   _NewTodoDialogState createState() => _NewTodoDialogState();
@@ -46,29 +48,11 @@ class _NewTodoDialogState extends State<NewTodoDialog> {
             controller: controllerBody,
           ),
           Center(
-            child: DropdownButton<String>(
-              value: dropdownValue,
-              icon: Icon(Icons.arrow_downward),
-              iconSize: 24,
-              elevation: 16,
-              style: TextStyle(color: Colors.deepPurple),
-              underline: Container(
-                height: 2,
-                color: Colors.deepPurpleAccent,
-              ),
-              onChanged: (String newValue) {
-                setState(() {
-                  dropdownValue = newValue;
-                  print(dropdownValue);
-                });
-              },
-              items: <String>['DEFAULT', 'CALL', 'HOME_WORK']
-                  .map<DropdownMenuItem<String>>((String value) {
-                return DropdownMenuItem<String>(
-                  value: value,
-                  child: Text(value),
-                );
-              }).toList(),
+            child: MyDropButton(
+              selected: dropdownValue,
+              onChangedValue: (value) => setState(() {
+                dropdownValue = value;
+              }),
             ),
           ),
         ],

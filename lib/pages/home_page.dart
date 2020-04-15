@@ -31,7 +31,7 @@ class _HomePageTodoState extends State<HomePageTodo> {
       case 'HOME_WORK':
         return Icon(Icons.contacts, size: 72.0);
       default:
-       return Icon(Icons.dialpad, size: 72.0);
+       return Icon(Icons.text_fields, size: 72.0);
     }
 
   }
