@@ -9,7 +9,7 @@ class NewTodoDialog extends StatefulWidget {
 class _NewTodoDialogState extends State<NewTodoDialog> {
   final controllerTitle = new TextEditingController();
   final controllerBody = new TextEditingController();
-
+  String dropdownValue = 'DEFAULT';
   @override
   Widget build(BuildContext context) {
     return AlertDialog(
@@ -46,6 +46,32 @@ class _NewTodoDialogState extends State<NewTodoDialog> {
             ),
             controller: controllerBody,
           ),
+          Center(
+            child: DropdownButton<String>(
+              value: dropdownValue,
+              icon: Icon(Icons.arrow_downward),
+              iconSize: 24,
+              elevation: 16,
+              style: TextStyle(color: Colors.deepPurple),
+              underline: Container(
+                height: 2,
+                color: Colors.deepPurpleAccent,
+              ),
+              onChanged: (String newValue) {
+                setState(() {
+                  dropdownValue = newValue;
+                  print(dropdownValue);
+                });
+              },
+              items: <String>['DEFAULT', 'CALL', 'HOME_WORK']
+                  .map<DropdownMenuItem<String>>((String value) {
+                return DropdownMenuItem<String>(
+                  value: value,
+                  child: Text(value),
+                );
+              }).toList(),
+            ),
+          ),
         ],
       ),
       actions: <Widget>[
@@ -62,7 +88,8 @@ class _NewTodoDialogState extends State<NewTodoDialog> {
               final todo = new Todo(
                   title: controllerTitle.value.text,
                   body: controllerBody.value.text,
-                  completed: 0);
+                  completed: 0,
+                  icon: dropdownValue);
               controllerTitle.clear();
               controllerBody.clear();
               //Navigator of .pop nos devuelve a la vista anterior

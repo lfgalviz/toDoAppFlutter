@@ -22,6 +22,20 @@ class _HomePageTodoState extends State<HomePageTodo> {
     );
   }
 
+  Icon addIcon(item){
+    switch (item) {
+      case 'DEFAULT':
+        return Icon(Icons.check, size: 72.0);
+      case 'CALL':
+        return Icon(Icons.call, size: 72.0);
+      case 'HOME_WORK':
+        return Icon(Icons.contacts, size: 72.0);
+      default:
+       return Icon(Icons.dialpad, size: 72.0);
+    }
+
+  }
+
   Widget _list() {
     return ListView.builder(
         itemCount: todos.length,
@@ -32,6 +46,7 @@ class _HomePageTodoState extends State<HomePageTodo> {
             key: UniqueKey(),
             child: Card(
               child: ListTile(
+                leading: addIcon(todos[posicion].icon),
                 title: Text(element.title),
                 subtitle: Text(element.body),
                 isThreeLine: true,
